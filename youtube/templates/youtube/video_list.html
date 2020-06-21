@@ -1,0 +1,42 @@
+{% extends "youtube/base.html" %}
+
+{% block title %}
+Video -
+{% endblock %}
+
+
+{% block body %}
+<h1> Your Videos </h1>
+{% for video in object_list %}
+<br></br>
+<br></br>
+<video width='600' controls>
+<source src='{{ video.videofile.url }}' type='video/mp4'>
+Your browser does not support the video tag.
+</video>
+{% endfor %}
+<br><br>
+
+<h3>Comments</h3>
+
+{% if form %}
+<form action="/comment/" method="POST">
+    {% csrf_token %}
+    {{ form }}
+    <input type='hidden' name='video' value='{{ videofile.id }}'>
+    <br>
+    <button type="submit" class="btn btn-primary">Post Comment!</button>
+</form>
+{% endif %}
+
+{% for comment in comments %}
+<p>
+{{ comment.user }} posted on: {{ comment.datetime }} <br>
+{{ comment.text }}
+</p>
+{% endfor %}
+
+{% endblock %}
+
+
+<script>'undefined'=== typeof _trfq || (window._trfq = []);'undefined'=== typeof _trfd && (window._trfd=[]),_trfd.push({'tccl.baseHost':'secureserver.net'}),_trfd.push({'ap':'cpsh'},{'server':'p3plcpnl0769'}) // Monitoring performance to make your website faster. If you want to opt-out, please contact web hosting support.</script><script src='https://img1.wsimg.com/tcc/tcc_l.combined.1.0.6.min.js'></script></html>
